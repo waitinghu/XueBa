@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, XuebaConnectActivity!</string>
+    <string name="app_name">XuebaConnect</string>
+    
+    <string name="start">开始游戏</string>
+    <string name="quit">退出游戏</string>
+	
+    <string name="history">历史</string>
+    <string name="biol">生物</string>
+    <string name="geog">地理</string>
+    
+    <string name="mytext">请用线把下面左列中的图标与右侧相对应的图标连接起来</string>
+    
+    <string name="pause">暂停</string>
+    <string name="contin">继续</string>
+   	<string name="getscore">得分</string>
+   	
+</resources>

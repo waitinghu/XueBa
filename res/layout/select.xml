@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/btn_his"
+        android:layout_width="wrap_content"
+        android:layout_height="135dp"
+        android:background="@drawable/his"
+        android:text="@string/history"
+        android:layout_marginTop="30dp" />
+
+    <Button
+        android:id="@+id/btn_bio"
+        android:layout_width="wrap_content"
+        android:layout_height="140dp"
+        android:background="@drawable/bio"
+        android:text="@string/biol" />
+
+    <Button
+        android:id="@+id/btn_geo"
+        android:layout_width="wrap_content"
+        android:layout_height="136dp"
+        android:background="@drawable/geo"
+        android:text="@string/geog" />
+
+</LinearLayout>

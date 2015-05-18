@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="leftmodule">
+       <item>江苏</item> 
+       <item>河南</item>
+       <item>山东</item>
+       <item>河北</item>
+       <item>安徽</item>
+       <item>贵州</item>
+    </string-array>
+    <string-array name="rightmodule">
+        <item>南京</item>
+        <item>郑州</item>
+        <item>济南</item>
+        <item>石家庄</item>
+        <item>合肥</item>
+        <item>贵阳</item>
+    </string-array>
+</resources>
