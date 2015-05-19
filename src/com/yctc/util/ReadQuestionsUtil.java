@@ -18,6 +18,31 @@ import android.util.Xml;
 public class ReadQuestionsUtil {
 
     private static XmlPullParser parser = Xml.newPullParser();
+    
+    
+    
+    public static Question getQuestionBySubject(String subject,ArrayList<Question> questions) {
+        
+        for(Question qes : questions) {
+
+            if(qes.getSubject().equals(subject)) {
+                if(qes.isReaded()) {
+                    continue;
+                }
+                qes.setReaded(true);
+                return qes;
+            }
+        }
+        
+        for(Question qes : questions) {
+            if(qes.getSubject().equals(subject)) {
+                qes.setReaded(true);
+                return qes;
+            }
+        }
+        return null;
+    }
+    
 
     public static ArrayList<Question> readXML(InputStream is) throws XmlPullParserException,
             IOException {
@@ -39,7 +64,8 @@ public class ReadQuestionsUtil {
                 String tagName = parser.getName();// 获得解析器当前元素的名称
                 if ("question".equals(tagName)) {
                     question = new Question();
-                    question.setSubject(parser.getAttributeName(0));
+                    question.setReaded(false);
+                    question.setSubject(parser.getAttributeValue(0));
                     items = new HashMap<String, String>();
                 }
                 if ("item".equals(tagName) && question != null && items != null) {
@@ -52,6 +78,7 @@ public class ReadQuestionsUtil {
                 if ("question".equals(tagName1)) {
                     question.setItem(items);
                     questions.add(question);
+                    question = null;
                 }
                 break;
             }

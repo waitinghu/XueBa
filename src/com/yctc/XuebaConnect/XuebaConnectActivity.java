@@ -35,26 +35,28 @@ public class XuebaConnectActivity extends Activity implements OnClickListener {
         btn_quit.setOnClickListener(this);
         btn_start.setOnClickListener(this);
         
+    }
+
+
+    public void read() {
         try {
-            InputStream is = this.getResources().getAssets().open("questions.xml");
+            InputStream is = this.getResources().getAssets()
+                    .open("questions.xml");
             ArrayList<Question> quetions = ReadQuestionsUtil.readXML(is);
-            
-            for(Question qs : quetions) {
+
+            for (Question qs : quetions) {
                 Map<String, String> items = qs.getItem();
-                Set<String> key= items.keySet();
+                Set<String> key = items.keySet();
                 Iterator<String> it = key.iterator();
-                while(it.hasNext()){
+                while (it.hasNext()) {
                     String left = it.next();
                     String right = items.get(left);
-                    
                 }
-                
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
-     
 
     }
 
@@ -69,11 +71,6 @@ public class XuebaConnectActivity extends Activity implements OnClickListener {
         }
         mMediaPlayer.setLooping(true);
         mMediaPlayer.start();
-        mMediaPlayer.setOnCompletionListener(new OnCompletionListener() {
-            public void onCompletion(MediaPlayer mp) {
-                
-            }
-        });
     }
 
     // Õ£÷π±≥æ∞“Ù¿÷
@@ -85,14 +82,13 @@ public class XuebaConnectActivity extends Activity implements OnClickListener {
         int id = v.getId();
 
         // µ„ª˜ø™ º∞¥≈• ¬º˛
-        if (id == btn_quit.getId()) {
+        if (id == btn_start.getId()) {
             Intent intent = new Intent();
             intent.setClass(XuebaConnectActivity.this, Select.class);
             startActivity(intent);
-
             // ≤•∑≈“Ù¿÷
             playBGMusic();
-        } else if (id == btn_start.getId()) {
+        } else if (id == btn_quit.getId()) {
             // ActivityΩ· ¯
             XuebaConnectActivity.this.finish();
             // Õ£÷π≤•∑≈“Ù¿÷

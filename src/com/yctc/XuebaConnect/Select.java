@@ -16,6 +16,7 @@ public class Select extends Activity implements OnClickListener{
     public Button mBiology;
     public Button mGeography;
     
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,7 +29,9 @@ public class Select extends Activity implements OnClickListener{
 		mGeography.setOnClickListener(this);
 	}
 	
-	public void onClick(View v) {
+
+	
+    public void onClick(View v) {
 	    Intent intent = new Intent(this,GameView.class);
 		switch (v.getId()) {
 		case R.id.btn_his:
