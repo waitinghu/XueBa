@@ -1,4 +1,4 @@
-package com.yctc.XuebaConnect;
+package com.yctc.xuebaconnect;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -14,7 +14,6 @@ public class DrawView extends View{
 	private Path mPath = new Path();
 	public DrawView(Context context) {
 		super(context);
-		// TODO Auto-generated constructor stub
 		
 		//设置画笔的锯齿效果。 true是去除
 		mGesturePaint.setAntiAlias(true);

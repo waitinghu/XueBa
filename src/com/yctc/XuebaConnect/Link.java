@@ -1,4 +1,5 @@
-package com.yctc.XuebaConnect;
+package com.yctc.xuebaconnect;
+
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -138,6 +139,7 @@ public class Link extends Activity {
     	num = 0;
     	showScore();
     }
+    
     //œ‘ æµ√∑÷
     public void showScore(){
     	score.setText(num+"");

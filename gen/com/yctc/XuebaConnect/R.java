@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.yctc.XuebaConnect;
+package com.yctc.xuebaconnect;
 
 public final class R {
     public static final class array {

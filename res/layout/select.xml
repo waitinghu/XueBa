@@ -8,17 +8,17 @@
         android:id="@+id/btn_his"
         android:layout_width="wrap_content"
         android:layout_height="135dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/his"
-        android:text="@string/history"
-        android:layout_marginTop="30dp" />
-
+        android:text="@string/history" />
+
     <Button
         android:id="@+id/btn_bio"
         android:layout_width="wrap_content"
         android:layout_height="140dp"
         android:background="@drawable/bio"
         android:text="@string/biol" />
-
+
     <Button
         android:id="@+id/btn_geo"
         android:layout_width="wrap_content"

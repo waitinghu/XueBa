@@ -3,189 +3,189 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-        <LinearLayout
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
             android:layout_width="fill_parent"
-    		android:layout_height="wrap_content"
-    		android:orientation="vertical">
-            
-            <TextView 
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:text="@string/mytext"/>
-            
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:text="@string/mytext" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5pt"
+        android:orientation="horizontal" >
+
         <LinearLayout
-            android:layout_width="wrap_content"
-    		android:layout_height="wrap_content"
-    		android:orientation="horizontal"
-    		
-    		android:layout_marginTop="5pt">
-            
-            <LinearLayout 
-                android:layout_width="match_parent"
-    			android:layout_height="match_parent"
-   				android:orientation="vertical"
-   				android:layout_marginLeft="10pt">
-              <TextView
-                   android:id="@+id/txt1"
-                   android:layout_width="120dp"
-                   android:layout_height="48dp"
-                   android:layout_marginTop="5pt"
-                   android:textSize="30sp"
-                   android:textColor="#000000"
-                   android:background="@drawable/module"
-                   android:gravity="center" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10pt"
+            android:orientation="vertical" >
 
-               <TextView
-                   android:id="@+id/txt2"
-                   android:layout_width="120dp"
-                   android:layout_height="48dp"
-                   android:layout_marginTop="5pt"
-                   android:textSize="30sp"
-                   android:textColor="#000000"
-                   android:background="@drawable/module"
-                   android:gravity="center" />
+            <TextView
+                android:id="@+id/txt1"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="5pt"
+                android:background="@drawable/module"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
-               <TextView
-                   android:id="@+id/txt3"
-                   android:layout_width="120dp"
-                   android:layout_height="48dp"
-                   android:layout_marginTop="5pt"
-                   android:textSize="30sp"
-                   android:textColor="#000000"
-                   android:background="@drawable/module"
-                   android:gravity="center" />
+            <TextView
+                android:id="@+id/txt2"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="5pt"
+                android:background="@drawable/module"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
-               <TextView
-                   android:id="@+id/txt4"
-                   android:layout_width="120dp"
-                   android:layout_height="48dp"
-                   android:layout_marginTop="5pt"
-                   android:textSize="30sp"
-                   android:textColor="#000000"
-                   android:background="@drawable/module"
-                   android:gravity="center" />
+            <TextView
+                android:id="@+id/txt3"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="5pt"
+                android:background="@drawable/module"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
-               <TextView
-                   android:id="@+id/txt5"
-                   android:layout_width="120dp"
-                   android:layout_height="48dp"
-                   android:layout_marginTop="5pt"
-                   android:textSize="30sp"
-                   android:textColor="#000000"
-                   android:background="@drawable/module"
-                   android:gravity="center"/>
+            <TextView
+                android:id="@+id/txt4"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="5pt"
+                android:background="@drawable/module"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
-               <TextView
-                   android:id="@+id/txt6"
-                   android:layout_width="120dp"
-                   android:layout_height="48dp"
-                   android:layout_marginTop="5pt"
-                   android:textSize="30sp"
-                   android:textColor="#000000"
-                   android:background="@drawable/module"
-                   android:gravity="center" />  
-            </LinearLayout>
-            <LinearLayout 
-                android:layout_width="match_parent"
-    			android:layout_height="match_parent"
-   				android:orientation="vertical"
-   				android:layout_marginLeft="10pt">
-                
-                <TextView
-                   android:id="@+id/txt7"
-                   android:layout_width="120dp"
-                   android:layout_height="48dp"
-                   android:layout_marginTop="5pt"
-                   android:textSize="30sp"
-                   android:textColor="#000000"
-                   android:background="@drawable/module"
-                   android:gravity="center" />
+            <TextView
+                android:id="@+id/txt5"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="5pt"
+                android:background="@drawable/module"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
-               <TextView
-                   android:id="@+id/txt8"
-                   android:layout_width="120dp"
-                   android:layout_height="48dp"
-                   android:layout_marginTop="5pt"
-                   android:textSize="30sp"
-                   android:textColor="#000000"
-                   android:background="@drawable/module"
-                   android:gravity="center" />
-
-               <TextView
-                   android:id="@+id/txt9"
-                   android:layout_width="120dp"
-                   android:layout_height="48dp"
-                   android:layout_marginTop="5pt"
-                   android:textSize="30sp"
-                   android:textColor="#000000"
-                   android:background="@drawable/module"
-                   android:gravity="center" />
-
-               <TextView
-                   android:id="@+id/txt10"
-                   android:layout_width="120dp"
-                   android:layout_height="48dp"
-                   android:layout_marginTop="5pt"
-                   android:textSize="30sp"
-                   android:textColor="#000000"
-                   android:background="@drawable/module"
-                   android:gravity="center" />
-
-               <TextView
-                   android:id="@+id/txt11"
-                   android:layout_width="120dp"
-                   android:layout_height="48dp"
-                   android:layout_marginTop="5pt"
-                   android:textSize="30sp"
-                   android:textColor="#000000"
-                   android:background="@drawable/module"
-                   android:gravity="center" />
-
-               <TextView
-                   android:id="@+id/txt12"
-                   android:layout_width="120dp"
-                   android:layout_height="48dp"
-                   android:layout_marginTop="5pt"
-                   android:textSize="30sp"
-                   android:textColor="#000000"
-                   android:background="@drawable/module"
-                   android:gravity="center" />
-                
-            </LinearLayout>
+            <TextView
+                android:id="@+id/txt6"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="5pt"
+                android:background="@drawable/module"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="30sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="5pt"
-            android:orientation="horizontal" >
-
-            <Button
-                android:id="@+id/btn_pause"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/pause" />
-
-            <Button
-                android:id="@+id/btn_contin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/contin" />
+            android:layout_marginLeft="10pt"
+            android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/getscore"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/getscore"
-                android:textSize="15pt" />
+                android:id="@+id/txt7"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="5pt"
+                android:background="@drawable/module"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <TextView
-                android:id="@+id/score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15pt" />
+                android:id="@+id/txt8"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="5pt"
+                android:background="@drawable/module"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/txt9"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="5pt"
+                android:background="@drawable/module"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/txt10"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="5pt"
+                android:background="@drawable/module"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/txt11"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="5pt"
+                android:background="@drawable/module"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/txt12"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="5pt"
+                android:background="@drawable/module"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="30sp" />
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5pt"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pause" />
+
+        <Button
+            android:id="@+id/btn_contin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/contin" />
+
+        <TextView
+            android:id="@+id/getscore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/getscore"
+            android:textSize="15pt" />
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15pt" />
+    </LinearLayout>
 
 </LinearLayout>

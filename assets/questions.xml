@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<questiongs>
+
+    <question subject="history" >
+        <item left="焚书坑儒">秦始皇</item>
+        <item left="女皇帝">武则天</item>
+        <item left="烽火戏诸侯">周幽王</item>
+        <item left="京杭运河">杨广</item>
+        <item left="贞观之治">李世民</item>
+        <item left="霸王别姬 ">项羽</item>
+    </question>
+
+    <question subject="biology" >
+        <item left="人">动物</item>
+        <item left="向日葵">植物</item>
+        <item left="变形虫">单细胞</item>
+        <item left="细胞质">细胞</item>
+        <item left="细菌">微生物</item>
+        <item left="子叶">植物种子</item>
+    </question>
+
+    <question subject="geography" >
+        <item left="浙江">杭州</item>
+        <item left="辽宁">沈阳</item>
+        <item left="山西">太原</item>
+        <item left="陕西">西安</item>
+        <item left="宁夏 ">银川</item>
+        <item left="云南">昆明</item>
+    </question>
+
+</questiongs>
