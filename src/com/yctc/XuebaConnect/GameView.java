@@ -1,69 +1,77 @@
 package com.yctc.xuebaconnect;
 
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.List;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
-import com.yctc.dao.Question;
-import com.yctc.util.ReadQuestionsUtil;
+import com.yctc.dao.AnswerMap;
+import com.yctc.dao.OneConnect;
 
-import android.app.Activity;
-import android.content.Context;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.Point;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class GameView extends Activity implements OnClickListener {
+public class GameView extends BaseGameActivity implements OnClickListener {
 
-    // 定义一个点
-    Point point = null;
-    // 创建一个用于存放连接点的集合
-    private List<Point> points = new ArrayList<Point>();
-    // TextView数组
-    TextView[][] ltextView, rtextView, ltextView1, rtextView1;
-
-    private String mSubject;
-    private ArrayList<Question> questions;
-    private Question question;
     private LinearLayout mLeftView, mRightView;
-    private LinearLayout root;
+    private RelativeLayout root;
 
     private ArrayList<String> mLeft = new ArrayList<String>();
     private ArrayList<String> mRight = new ArrayList<String>();
 
-    boolean hasLeftPressed;
-    boolean hasRightPressed;
+    private TextView leftSelect;
+    private TextView rightSelect;
 
-    TextView leftSelect;
-    TextView rightSelect;
+    private Button btn_back;
+
+    private Vibrator vibrator;
+
+    public static final int STATE_INIT = 0;
+    public static final int STATE_SELECT = 1;
+
+    private LinkedList<OneConnect> playResult = new LinkedList<OneConnect>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view);
-        root = (LinearLayout) findViewById(R.id.root);
+        root = (RelativeLayout) findViewById(R.id.root);
         Intent intent = getIntent();
         mSubject = intent.getStringExtra(Select.KEY_SUBJECT_KIND);
         mLeftView = (LinearLayout) findViewById(R.id.left_container);
         mRightView = (LinearLayout) findViewById(R.id.right_container);
-        loadQuestion();
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        btn_back = (Button) findViewById(R.id.btn_contin);
+        btn_back.setOnClickListener(new OnClickListener() {
+
+            public void onClick(View v) {
+                back();
+            }
+        });
+
     }
 
-    private void initGameDate() {
-        question = ReadQuestionsUtil.getQuestionBySubject(mSubject, questions);
+    // 定义两个Integer数组，用于存放textView的
+    int[] leftID = { R.id.txt1, R.id.txt2, R.id.txt3, R.id.txt4, R.id.txt5,
+            R.id.txt6 };
+    int[] rightID = { R.id.txt7, R.id.txt8, R.id.txt9, R.id.txt10, R.id.txt11,
+            R.id.txt12 };
+
+    public void initGame() {
+
         question.setReaded(true);
         Map<String, String> items = question.getItem();
         Set<String> key = items.keySet();
@@ -73,15 +81,6 @@ public class GameView extends Activity implements OnClickListener {
             mLeft.add(itemKey);
             mRight.add(items.get(itemKey));
         }
-    }
-
-    // 定义两个Integer数组，用于存放textView的
-    int[] leftID = { R.id.txt1, R.id.txt2, R.id.txt3, R.id.txt4, R.id.txt5,
-            R.id.txt6 };
-    int[] rightID = { R.id.txt7, R.id.txt8, R.id.txt9, R.id.txt10, R.id.txt11,
-            R.id.txt12 };
-
-    private void initGame() {
 
         Collections.shuffle(mLeft);
         Collections.shuffle(mRight);
@@ -89,6 +88,8 @@ public class GameView extends Activity implements OnClickListener {
         for (int i = 0; i < leftID.length; i++) {
             TextView viewLeft = (TextView) mLeftView.findViewById(leftID[i]);
             TextView viewRight = (TextView) mRightView.findViewById(rightID[i]);
+            viewLeft.setTag(STATE_INIT);
+            viewRight.setTag(STATE_INIT);
             viewLeft.setText(mLeft.get(i));
             viewRight.setText(mRight.get(i));
             viewLeft.setOnClickListener(this);
@@ -99,151 +100,123 @@ public class GameView extends Activity implements OnClickListener {
 
     public void onClick(View v) {
         int id = v.getId();
+        vibrator.vibrate(10);
+        int state = (Integer) v.getTag();
 
         for (int i = 0; i < leftID.length; i++) {
             if (id == leftID[i]) {
-                v.setBackgroundColor(0x88888);
-                hasLeftPressed = true;
-                leftSelect = (TextView) v;
+
+                if (leftSelect != null
+                        && (Integer) leftSelect.getTag() == STATE_SELECT) {
+                    leftSelect.setTag(STATE_INIT);
+                    leftSelect.setBackgroundResource(R.drawable.module);
+                    leftSelect = null;
+                }
+                if (state == STATE_INIT) {
+                    v.setBackgroundResource(R.drawable.selected);
+                    v.setTag(STATE_SELECT);
+                    leftSelect = (TextView) v;
+                }
             }
         }
 
         for (int i = 0; i < rightID.length; i++) {
             if (id == rightID[i]) {
-                v.setBackgroundColor(Color.BLUE);
-                hasRightPressed = true;
-                rightSelect = (TextView) v;
+                if (rightSelect != null
+                        && (Integer) rightSelect.getTag() == STATE_SELECT) {
+                    rightSelect.setTag(STATE_INIT);
+                    rightSelect.setBackgroundResource(R.drawable.module);
+                    rightSelect = null;
+                }
+                if (state == STATE_INIT) {
+                    v.setBackgroundResource(R.drawable.selected);
+                    v.setTag(STATE_SELECT);
+                    rightSelect = (TextView) v;
+                }
             }
         }
 
-        if (hasLeftPressed && hasRightPressed) {
-            Point left = getPosition(leftSelect);
-            Point right = getPosition(rightSelect);
-            drawLine(left, right);
-            hasLeftPressed = false;
-            hasRightPressed = false;
+        if (leftSelect != null && rightSelect != null) {
+            Point left = getPosition(leftSelect, true);
+            Point right = getPosition(rightSelect, false);
+            View line = drawLine(left, right);
+            root.addView(line);
+            playResult.add(new OneConnect(line, new TextView[] { leftSelect,
+                    rightSelect }));
             leftSelect = null;
             rightSelect = null;
-        }
-
-    }
-
-    private void initGame1() {
-
-        Resources res = getResources();
-        String[] left = res.getStringArray(R.array.leftmodule);
-        String[] right = res.getStringArray(R.array.rightmodule);
-
-        // 初始化ltextView，rtextView为长度为6的数组
-        TextView[][] ltextView = new TextView[6][2];
-        TextView[][] rtextView = new TextView[6][2];
-
-        // 定义两个Integer数组，用于存放textView的
-        Integer[] int1 = { R.id.txt1, R.id.txt2, R.id.txt3, R.id.txt4,
-                R.id.txt5, R.id.txt6 };
-        Integer[] int2 = { R.id.txt7, R.id.txt8, R.id.txt9, R.id.txt10,
-                R.id.txt11, R.id.txt12 };
-
-        // 把Integer数组的元素放到ltextView，rtextView数组中
-        for (int i = 0; i < int1.length; i++) {
-            ltextView[i][1].setText(i);
-            ltextView[i][2] = (TextView) findViewById(int1[i]);
-            ltextView[i][2].setText(left[i]);
-        }
-        for (int j = 0; j < int2.length; j++) {
-            rtextView[j][1].setText(j);
-            rtextView[j][2] = (TextView) findViewById(int2[j]);
-            rtextView[j][2].setText(right[j]);
-        }
-
-        // 打乱两个textView数组的顺序
-        upset(ltextView, ltextView1);
-        upset(rtextView, rtextView1);
-
-        for (int i = 0; i < 6; i++) {
-            getPosition(ltextView1[i][2]);
-            getPosition(rtextView1[i][2]);
+            if (playResult.size() >= 6) {
+                GameOver();
+            }
         }
     }
 
-    // 获取TextView的坐标
-    private Point getPosition(final TextView tv) {
-        // TODO Auto-generated method stub
-        // 定义一个数组用于存放点的坐标
+    private void GameOver() {
+        
+        new AlertDialog.Builder(GameView.this)
+                .setTitle("游戏结束")
+                .setMessage("您的游戏得分是" + getScore())
+                .setPositiveButton("查看答案",new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog,int which) {
+                                Intent intent = new Intent(getApplicationContext(), ViewAnswerActivity.class);
+                                AnswerMap answer = new AnswerMap();
+                                intent.putExtra("subject", mSubject);
+                                answer.setAnswer(question.getItem());
+                                intent.putExtra("answser", answer);
+                                intent.putStringArrayListExtra("left", mLeft);
+                                intent.putStringArrayListExtra("right", mRight);
+                                startActivity(intent);
+                            }
+
+                        })
+                 .setNegativeButton("下一题", new DialogInterface.OnClickListener() {
+                    
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(getApplicationContext(), GameView.class);
+                        intent.putExtra(Select.KEY_SUBJECT_KIND, mSubject);
+                        startActivity(intent);
+                        GameView.this.finish();
+                    }
+                }).show();
+    }
+
+    
+    private int getScore() {
+        
+        
+        return 50;
+    }
+
+    public void back() {
+
+        if (playResult != null && playResult.size() > 0) {
+            OneConnect connect = playResult.removeLast();
+            View line = connect.getLine();
+            root.removeView(line);
+            TextView[] views = connect.getTextViews();
+            for (int i = 0; i < views.length; i++) {
+                views[i].setBackgroundResource(R.drawable.module);
+                views[i].setTag(STATE_INIT);
+            }
+        }
+    }
+
+    private Point getPosition(TextView tv, boolean isLift) {
+
         int[] location = new int[2];
-        tv.getLocationOnScreen(location);
+        tv.getLocationInWindow(location);
 
-        Point point = new Point(location[0], location[1]);
+        int contentTop = getWindow().findViewById(Window.ID_ANDROID_CONTENT)
+                .getTop();
+        location[1] = location[1] - contentTop - tv.getHeight();
+
+        if (isLift) {
+            location[0] += tv.getWidth();
+        }
+
+        Point point = new Point(location[0], location[1] + 6);
 
         return point;
-    }
-
-    // 打乱textView数组的顺序
-    private void upset(TextView[][] ltextView1, TextView[][] textView2) {
-        // 将数组转化成集合
-        List<TextView[]> list = Arrays.asList(ltextView1);
-        // 打乱集合的顺序
-        Collections.shuffle(list);
-        // 将集合转换为数组textView1
-        list.toArray(textView2);
-    }
-
-    // 判断两个TextView是否匹配
-    protected Boolean isMatching(TextView textView1, TextView textView2) {
-        for (int i = 0; i < ltextView.length; i++) {
-            if (ltextView1[i][1] == rtextView1[i][1]) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // 两个点之间划线
-    public void drawLine(Point start, Point end) {
-        DrawView view = new DrawView(this, start, end);
-        view.invalidate();
-        root.addView(view);
-    }
-
-    public class LoadQuestionTask extends
-            AsyncTask<Void, Integer, ArrayList<Question>> {
-
-        private Context mContext;
-
-        public LoadQuestionTask(Context context) {
-            this.mContext = context;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            Toast.makeText(mContext, "初始化题库中...", Toast.LENGTH_SHORT).show();
-            super.onPreExecute();
-        }
-
-        @Override
-        protected ArrayList<Question> doInBackground(Void... params) {
-            ArrayList<Question> quetiongs = null;
-            try {
-                InputStream is = mContext.getResources().getAssets()
-                        .open("questions.xml");
-                quetiongs = ReadQuestionsUtil.readXML(is);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return quetiongs;
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<Question> result) {
-            questions = result;
-            initGameDate();
-            initGame();
-            super.onPostExecute(result);
-        }
-    }
-
-    private void loadQuestion() {
-        LoadQuestionTask task = new LoadQuestionTask(getApplicationContext());
-        task.execute();
     }
 }

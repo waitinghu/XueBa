@@ -5,6 +5,8 @@ import java.io.IOException;
 import com.yctc.xuebaconnect.R;
 
 import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.IBinder;
@@ -34,5 +36,16 @@ public class MusicPlayService extends Service{
         
         return super.onStartCommand(intent, flags, startId);
     }
+    
+    
+    public class MusicPlayReciver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            
+            
+        }
+    }
+    
 
 }

@@ -8,20 +8,30 @@ import java.util.Map;
 
 
 
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import com.yctc.dao.Question;
 
+import android.content.Context;
 import android.util.Xml;
 
 public class ReadQuestionsUtil {
 
     private static XmlPullParser parser = Xml.newPullParser();
     
+    private static ArrayList<Question> questions = null;
     
-    
-    public static Question getQuestionBySubject(String subject,ArrayList<Question> questions) {
+    public static Question getQuestionBySubject(String subject,Context context) {
+        
+        InputStream is = null;
+        try {
+            is = context.getAssets().open("questions.xml");
+            questions = readXML(is);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         
         for(Question qes : questions) {
 
@@ -46,6 +56,10 @@ public class ReadQuestionsUtil {
 
     public static ArrayList<Question> readXML(InputStream is) throws XmlPullParserException,
             IOException {
+        
+        if(questions != null && questions.size() != 0) {
+            return questions;
+        }
 
         parser.setInput(is, "UTF-8");
 

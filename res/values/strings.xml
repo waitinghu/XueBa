@@ -3,6 +3,7 @@
 
     <string name="hello">Hello World, XuebaConnectActivity!</string>
     <string name="app_name">XuebaConnect</string>
+    <string name="image_button">button</string>
     
     <string name="start">开始游戏</string>
     <string name="quit">退出游戏</string>
@@ -14,7 +15,7 @@
     <string name="mytext">请用线把下面左列中的图标与右侧相对应的图标连接起来</string>
     
     <string name="pause">暂停</string>
-    <string name="contin">继续</string>
+    <string name="contin">撤销</string>
    	<string name="getscore">得分</string>
    	
 </resources>

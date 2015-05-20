@@ -1,8 +1,6 @@
 package com.yctc.xuebaconnect;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -35,11 +33,7 @@ public class DrawView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         //canvas.drawPath(mPath, mGesturePaint);
-        
-        //画图片，就是贴图  
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);  
-        canvas.drawBitmap(bitmap, 250,360, mGesturePaint);  
-//        canvas.drawLine(20, 20, 80, 80, mGesturePaint);
+        canvas.drawLine(start.x, start.y, end.x, end.y, mGesturePaint);
     }
 
     // 在两个TextView之间画线
